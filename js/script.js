@@ -20,7 +20,7 @@ let invia = document.getElementById('invia')
 let randomArr = [];
 let user = []
 let randomNum;
-let id = document.getElementById('result')
+let idus = document.getElementById('result')
 console.log(randomNum)
 
 play.addEventListener('click', function () {
@@ -51,9 +51,11 @@ play.addEventListener('click', function () {
                }
           } if (trovato === false) {
                console.log('perso')
-               id.innerHTML = 'vinto'
+               idus.innerHTML = 'hai perso'
+               console.log(idus)
           } else {
                console.log('vinto')
+               idus.innerHTML = 'hai vinto'
           }
 
      })
