@@ -10,56 +10,52 @@
 // 1) funzione che generi 5 numeri randomici diversi  FATTOOO
 // 2) pushare in un array inizialmente vuoto i 5 numeri  FATTOO
 // 3) far apparire i numeri a schermo FATTOO
-// 4) utilizzare un SETTINTERVAL che faccia scomparire i numeri dopo 30 secondi
+// 4) utilizzare un SETT che faccia scomparire i numeri dopo 30 secondi FATTOO
 // 5) far inserire uno alla volta i 5 numeri che l'utente ricorda 
-// con un ciclo while
 // 6) resoconto partita
 let greed = document.getElementById('greed')
 let play = document.getElementById('play')
+let form = document.getElementById('inputform')
 let randomArr = [];
 let randomNum;
 let time = 5;
 console.log(randomNum)
 
+play.addEventListener('click', function () {
+     greed.innerHTML = '';
+     for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+               newsquare.classList.add('invisible')
+          }, 5000);
+          randomNum = genUniqueNumberRandom(1, 100, randomArr);
+          randomArr.push(randomNum)
+          let newsquare = genSquare(randomArr[i]);
+          greed.append(newsquare)
+     } console.log(randomArr)
+     
+}, {once:true});
 
-for (let i = 0; i < 5; i++) {
-     randomNum = genUniqueNumberRandom(1, 100, randomArr);
-     randomArr.push(randomNum)
-} console.log(randomArr)
-for (let i = 0; i < 5 ; i++){
-     let newsquare = genSquare(randomArr[i]);
-     greed.append(newsquare)
+
+
+
+function genSquare(cont) {
+     let newEl = document.createElement('article');
+     newEl.innerHTML = '<span>' + cont + '</span>'
+     newEl.classList.add('square');
+     return newEl;
 }
 
-
-
-
-
-
-let mytimer = setInterval(function (){
-     time--;
-     console.log(time)
-     if(time === 0)clearInterval(mytimer)
-}, 1000);
-
-     function genSquare(cont) {
-          let newEl = document.createElement('article');
-          newEl.innerHTML = '<span>' + cont + '</span>'
-          newEl.classList.add('square');
-          return newEl;
-      }
-
-     function genUniqueNumberRandom(min, max, listanum) {
-          let trovato = false;
-          let numRandom;
-          while (trovato === false) {
-               numRandom = getRndInteger(min, max);
-               if (listanum.includes(numRandom) === false) {
-                    trovato = true;
-               }
+function genUniqueNumberRandom(min, max, listanum) {
+     let trovato = false;
+     let numRandom;
+     while (trovato === false) {
+          numRandom = getRndInteger(min, max);
+          if (listanum.includes(numRandom) === false) {
+               trovato = true;
           }
-          return numRandom;
      }
+     return numRandom;
+}
 
 
 function getRndInteger(min, max) {
