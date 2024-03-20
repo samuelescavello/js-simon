@@ -16,24 +16,49 @@
 let greed = document.getElementById('greed')
 let play = document.getElementById('play')
 let form = document.getElementById('inputform')
+let invia = document.getElementById('invia')
 let randomArr = [];
+let user = []
 let randomNum;
-let time = 5;
+let id = document.getElementById('result')
 console.log(randomNum)
 
 play.addEventListener('click', function () {
-     greed.innerHTML = '';
+
      for (let i = 0; i < 5; i++) {
           setTimeout(() => {
                newsquare.classList.add('invisible')
+               console.log(form)
+               form.classList.remove('d-none')
           }, 5000);
           randomNum = genUniqueNumberRandom(1, 100, randomArr);
           randomArr.push(randomNum)
           let newsquare = genSquare(randomArr[i]);
           greed.append(newsquare)
      } console.log(randomArr)
-     
-}, {once:true});
+     invia.addEventListener('click', function () {
+          let input1 = parseInt(document.getElementById('inp1').value)
+          let input2 = parseInt(document.getElementById('inp2').value)
+          let input3 = parseInt(document.getElementById('inp3').value)
+          let input4 = parseInt(document.getElementById('inp4').value)
+          let input5 = parseInt(document.getElementById('inp5').value)
+          user = [input1, input2, input3, input4, input5]
+          console.log(user)
+          let trovato = true;
+          for (let i = 0; i < 5; i++) {
+               if (user[i] !== randomArr[i]) {
+                    trovato = false;
+               }
+          } if (trovato === false) {
+               console.log('perso')
+               id.innerHTML = 'vinto'
+          } else {
+               console.log('vinto')
+          }
+
+     })
+
+}, { once: true });
 
 
 
